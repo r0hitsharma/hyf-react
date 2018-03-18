@@ -7,7 +7,8 @@ class TodoList extends Component {
 		this.addTodo = this.addTodo.bind(this);
 
 		this.state = {
-			todos: this.props.todos
+			todos: this.props.todos,
+			newTodoInput: ''
 		};
 
 		this.counter = Math.max(...this.state.todos.map(todo => todo.id));
@@ -20,7 +21,9 @@ class TodoList extends Component {
 					<label>Add new todo: </label>
 					<input
 						placeholder="todo item"
-						ref={(input) => { this.newTodoInput = input }}
+						/*ref={(input) => { this.state.newTodoInput = input }}*/
+						onChange={ event => this.setState({newTodoInput: event.target.value }) }
+						value={ this.state.newTodoInput }
 						required
 					/>
 					<input type="submit" value="Add"/>
@@ -41,7 +44,7 @@ class TodoList extends Component {
 		// console.log(this.props.todos);
 		const newTodo = {
 			id: ++this.counter,
-			name: this.newTodoInput.value
+			name: this.state.newTodoInput
 		};
 		console.log("adding Todo:", newTodo);
 		this.setState({ todos: [...this.state.todos, newTodo]});
