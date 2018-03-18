@@ -1,12 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import TodoList from './TodoList';
+import App from './App';
 
-const todoList = [{
-	name: "Buy hay"
-}, {
-	name: "Buy woodchips"
-}];
-
-ReactDOM.render(<TodoList todos = { todoList }/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
