@@ -22,7 +22,9 @@ class TodoList extends Component {
 					<input
 						placeholder="todo item"
 						/*ref={(input) => { this.state.newTodoInput = input }}*/
-						onChange={ event => this.setState({newTodoInput: event.target.value }) }
+						onChange={ event => this.setState({
+							newTodoInput: event.target.value
+						}) }
 						value={ this.state.newTodoInput }
 						required
 					/>
@@ -30,7 +32,25 @@ class TodoList extends Component {
 				</form>
 				<ul>
 				{
-					this.state.todos.map(todo => <li key={ todo.id }>{ todo.name }</li>)
+					this.state.todos.map((todo, index) =>
+						<li
+							key={ todo.id }
+							class={ todo.done ? "done": ""}
+						>
+							<input
+								type="checkbox"
+								checked={ todo.done }
+								onChange={ event => {
+									const todos = this.state.todos;
+									todos[index].done = event.target.checked;
+									this.setState({
+										todos: todos
+									});
+								} }
+							/>
+							{ todo.name }
+						</li>
+					)
 				}
 				</ul>
 			</div>
@@ -44,7 +64,8 @@ class TodoList extends Component {
 		// console.log(this.props.todos);
 		const newTodo = {
 			id: ++this.counter,
-			name: this.state.newTodoInput
+			name: this.state.newTodoInput,
+			done: false
 		};
 		console.log("adding Todo:", newTodo);
 		this.setState({ todos: [...this.state.todos, newTodo]});

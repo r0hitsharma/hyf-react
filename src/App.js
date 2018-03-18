@@ -3,10 +3,12 @@ import TodoList from './TodoList';
 
 const todos = [{
 	id: 0,
-	name: "Buy hay"
+	name: "Buy hay",
+	done: true
 }, {
 	id: 1,
-	name: "Buy woodchips"
+	name: "Buy woodchips",
+	done: true
 }];
 
 class App extends Component {
